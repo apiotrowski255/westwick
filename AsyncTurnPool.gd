@@ -1,0 +1,14 @@
+extends Resource
+class_name AsyncTurnPool
+
+var active_nodes := []
+
+signal turn_over
+
+func append(node : Node) -> void:
+	active_nodes.append(node)
+	
+func remove(node : Node) -> void:
+	active_nodes.erase(node)
+	if active_nodes.empty():
+		emit_signal("turn_over")
