@@ -9,6 +9,7 @@ onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var timer: Timer = $Timer
 onready var player_battle_unit_info: Control = $BattleUI/PlayerBattleUnitInfo
 onready var enemy_battle_unit_info: Control = $BattleUI/EnemyBattleUnitInfo
+onready var level_up_ui: TextureRect = $"%LevelUpUI"
 
 
 func _ready() -> void:
@@ -23,6 +24,16 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		SceneStack.pop()
+
+func battle_won() -> void:
+	timer.start(0.5)
+	yield(timer, "timeout")
+	var previous_level : int = player_battle_unit.stats.level
+	player_battle_unit.stats.experience += 105
+	if player_battle_unit.stats.level > previous_level:
+		yield(level_up_ui.level_up(), "completed")
+	timer.start(0.5)
+	yield(timer, "timeout")
 
 func exit_battle() -> void:
 	timer.start(1.0)
@@ -39,6 +50,7 @@ func _on_ally_turn_started() -> void:
 	
 func _on_enemy_turn_started() -> void:
 	if not is_instance_valid(enemy_battle_unit) or enemy_battle_unit.is_queued_for_deletion():
+		yield(battle_won(), "completed")
 		exit_battle()
 		return
 	enemy_battle_unit.melee_attack(player_battle_unit)

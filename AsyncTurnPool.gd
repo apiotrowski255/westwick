@@ -15,3 +15,5 @@ func remove(node : Node) -> void:
 	if active_nodes.empty():
 		emit_signal("turn_over")
 
+func size() -> int:
+	return active_nodes.size()

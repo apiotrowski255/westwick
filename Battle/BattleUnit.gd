@@ -41,6 +41,7 @@ func melee_attack(target : BattleUnit ) -> void:
 	battle_animations.play("Idle")
 	z_index = 0
 	asyncTurnPool.remove(self)
+	
 
 func take_hit(attacker : BattleUnit) -> void:
 	asyncTurnPool.append(self)
