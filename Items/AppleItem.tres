@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource( 1 )
-Name = "Apple"
+name = "Apple"
 description = "A small fruit that heals 2 health."
 amount = 1
 overworld_sprite = ExtResource( 2 )
