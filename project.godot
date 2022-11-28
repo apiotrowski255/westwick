@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://Battle/BattleUnit.gd"
 }, {
 "base": "Resource",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Characters/Character.gd"
+}, {
+"base": "Resource",
 "class": "ClassStats",
 "language": "GDScript",
 "path": "res://ClassStats/ClassStats.gd"
@@ -54,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Item.gd"
 }, {
+"base": "Interactable",
+"class": "NPC",
+"language": "GDScript",
+"path": "res://World/NPC.gd"
+}, {
 "base": "ClassStats",
 "class": "PlayerClassStats",
 "language": "GDScript",
@@ -70,10 +80,12 @@ _global_script_class_icons={
 "BattleCamera": "",
 "BattleMenu": "",
 "BattleUnit": "",
+"Character": "",
 "ClassStats": "",
 "Interactable": "",
 "Inventory": "",
 "Item": "",
+"NPC": "",
 "PlayerClassStats": "",
 "TurnManager": ""
 }
