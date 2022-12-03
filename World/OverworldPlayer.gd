@@ -1,8 +1,13 @@
 extends KinematicBody2D
 
-const WALK_SPEED = 80
+const WALK_SPEED := 80
+const MAX_ENCOUNTER_METER := 100
+const MIN_ENCOUNTER_CHANCE := 0.1
+const ENCOUNTER_METER_REDUCTION_AMOUNT := 75
 
 var velocity := Vector2.ZERO
+var encounter_meter := MAX_ENCOUNTER_METER
+var encounter_chance := MIN_ENCOUNTER_CHANCE
 
 onready var animated_sprite := get_node("AnimatedSprite")
 onready var interactable_detector: Area2D = $InteractableDetector
@@ -20,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	if is_moving():
 		animate_walk()
 		interactable_detector.rotation = velocity.angle()
+		encounter_check(delta)
 	else:
 		animate_idle()
 
@@ -36,8 +42,21 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().set_input_as_handled()
 #		Events.emit_signal("request_show_message", "Yhe enter key")
 #		SceneStack.push("res://Battle/Battle.tscn")
-		
-		
+
+func encounter() -> void:
+	pass
+
+func encounter_check(delta : float) -> void:
+	encounter_meter -= ENCOUNTER_METER_REDUCTION_AMOUNT * delta
+	if encounter_meter <= 0:
+		encounter_meter = MAX_ENCOUNTER_METER
+		if Math.chance(encounter_chance):
+			encounter_chance = MIN_ENCOUNTER_CHANCE
+			encounter()
+			print("Found encounter")
+		else:
+			encounter_chance = min(encounter_chance + 0.1, 1.0)
+
 
 func animate_idle() -> void:
 	match animated_sprite.animation:
