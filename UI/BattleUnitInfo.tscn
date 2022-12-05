@@ -27,3 +27,10 @@ margin_top = 13.0
 margin_right = 58.0
 margin_bottom = 24.0
 text = "Level : 100"
+
+[node name="HealthLabel" type="Label" parent="."]
+margin_left = 29.0
+margin_top = -10.0
+margin_right = 69.0
+margin_bottom = 1.00001
+text = "10"

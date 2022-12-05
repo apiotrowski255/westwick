@@ -21,6 +21,9 @@ onready var enemy_camera_position : Vector2 = get_battle_unit_camera_position(en
 onready var player_camera_position : Vector2 = get_battle_unit_camera_position(player_battle_unit)
 
 func _ready() -> void:
+	var encounter_class : ClassStats = ReferenceStash.encounter_class
+	if encounter_class is ClassStats:
+		enemy_battle_unit.stats = encounter_class.duplicate()
 	player_battle_unit_info.stats = player_battle_unit.stats
 	enemy_battle_unit_info.stats = enemy_battle_unit.stats
 	yield(animation_player, "animation_finished")
@@ -63,7 +66,8 @@ func _on_ally_turn_started() -> void:
 	match option:
 		BattleMenu.ACTION:
 			battle_camera.focus_target(enemy_camera_position, ZOOM_IN)
-			player_battle_unit.melee_attack(enemy_battle_unit)
+			var battle_action = player_battle_unit.stats.battle_actions.front()
+			player_battle_unit.melee_attack(enemy_battle_unit, battle_action)
 		BattleMenu.ITEM:
 			turnManager.advance_turn()
 		BattleMenu.RUN:
@@ -75,7 +79,8 @@ func _on_enemy_turn_started() -> void:
 		exit_battle()
 		return
 	battle_camera.focus_target(player_camera_position, ZOOM_IN)
-	enemy_battle_unit.melee_attack(player_battle_unit)
+	var battle_action = enemy_battle_unit.stats.battle_actions.front()
+	enemy_battle_unit.melee_attack(player_battle_unit, battle_action)
 	
 func _on_async_turn_pool_turn_over() -> void:
 	yield(battle_camera.focus_target(center_point, ZOOM_DEFAULT), "completed")

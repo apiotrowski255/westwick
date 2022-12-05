@@ -68,6 +68,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("YellowFlash/ColorRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -117,6 +129,18 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("YellowFlash/ColorRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
 "values": [ true ]
 }
 
@@ -240,6 +264,10 @@ margin_bottom = 30.0
 [node name="CenterContainer" type="CenterContainer" parent="BattleUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="LevelUpUI" parent="BattleUI/CenterContainer" instance=ExtResource( 14 )]
 unique_name_in_owner = true

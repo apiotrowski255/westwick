@@ -4,6 +4,7 @@ var stats : ClassStats setget set_stats
 
 onready var health_bar: TextureRect = $HealthBar
 onready var level_label: Label = $LevelLabel
+onready var health_label: Label = $HealthLabel
 
 func set_stats(value : ClassStats) -> void:
 	stats = value
@@ -18,10 +19,12 @@ func connect_stats() -> void:
 	stats.connect("health_changed", self, "_on_stats_health_changed")
 	stats.connect("level_changed", self, "_on_stats_level_changed")
 	health_bar.set_bar(stats.health, stats.max_health)
+	health_label.text = str(stats.health)
 	update_level()
 	
 func _on_stats_health_changed() -> void:
 	health_bar.animate_bar(stats.health, stats.max_health)
+	health_label.text = str(stats.health)
 
 func _on_stats_level_changed() -> void:
 	update_level()

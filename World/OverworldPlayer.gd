@@ -44,7 +44,12 @@ func _unhandled_input(event: InputEvent) -> void:
 #		SceneStack.push("res://Battle/Battle.tscn")
 
 func encounter() -> void:
-	pass
+	var random_encounters = ReferenceStash.random_encounters
+	if random_encounters.empty():
+		return
+	random_encounters.shuffle()
+	ReferenceStash.encounter_class = random_encounters.front()
+	SceneStack.push("res://Battle/Battle.tscn")
 
 func encounter_check(delta : float) -> void:
 	encounter_meter -= ENCOUNTER_METER_REDUCTION_AMOUNT * delta
@@ -53,7 +58,6 @@ func encounter_check(delta : float) -> void:
 		if Math.chance(encounter_chance):
 			encounter_chance = MIN_ENCOUNTER_CHANCE
 			encounter()
-			print("Found encounter")
 		else:
 			encounter_chance = min(encounter_chance + 0.1, 1.0)
 
