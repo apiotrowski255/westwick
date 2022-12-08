@@ -7,13 +7,13 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 7, 7 )
-expand_margin_left = 3.0
-expand_margin_right = 3.0
-expand_margin_top = 3.0
-expand_margin_bottom = 3.0
+margin_left = 3.0
+margin_right = 3.0
+margin_top = 2.0
+margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 4 )
@@ -35,8 +35,8 @@ Button/styles/hover = SubResource( 1 )
 Button/styles/normal = SubResource( 1 )
 Button/styles/pressed = SubResource( 1 )
 PanelContainer/styles/panel = ExtResource( 2 )
-VScrollBar/styles/grabber = SubResource( 2 )
-VScrollBar/styles/grabber_highlight = SubResource( 2 )
+VScrollBar/styles/grabber = SubResource( 4 )
+VScrollBar/styles/grabber_highlight = SubResource( 4 )
 VScrollBar/styles/grabber_pressed = ExtResource( 2 )
 VScrollBar/styles/scroll = SubResource( 3 )
 VScrollBar/styles/scroll_focus = ExtResource( 2 )
