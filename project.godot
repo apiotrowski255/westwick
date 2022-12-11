@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Battle/BattleCamera.gd"
 }, {
-"base": "HBoxContainer",
+"base": "FocusMenu",
 "class": "BattleMenu",
 "language": "GDScript",
 "path": "res://UI/BattleMenu.gd"
@@ -53,6 +53,11 @@ _global_script_classes=[ {
 "class": "DamageBattleAction",
 "language": "GDScript",
 "path": "res://BattleActions/DamageBattleAction.gd"
+}, {
+"base": "Control",
+"class": "FocusMenu",
+"language": "GDScript",
+"path": "res://UI/FocusMenu.gd"
 }, {
 "base": "Node",
 "class": "Interactable",
@@ -94,7 +99,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ResourceButton.gd"
 }, {
-"base": "PanelContainer",
+"base": "FocusMenu",
 "class": "ScrollList",
 "language": "GDScript",
 "path": "res://UI/ScrollList.gd"
@@ -103,6 +108,11 @@ _global_script_classes=[ {
 "class": "TurnManager",
 "language": "GDScript",
 "path": "res://TurnManager.gd"
+}, {
+"base": "Resource",
+"class": "UIStack",
+"language": "GDScript",
+"path": "res://UI/UIStack.gd"
 } ]
 _global_script_class_icons={
 "AsyncTurnPool": "",
@@ -114,6 +124,7 @@ _global_script_class_icons={
 "Character": "",
 "ClassStats": "",
 "DamageBattleAction": "",
+"FocusMenu": "",
 "Interactable": "",
 "Inventory": "",
 "Item": "",
@@ -123,7 +134,8 @@ _global_script_class_icons={
 "PlayerClassStats": "",
 "ResourceButton": "",
 "ScrollList": "",
-"TurnManager": ""
+"TurnManager": "",
+"UIStack": ""
 }
 
 [application]

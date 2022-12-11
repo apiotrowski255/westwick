@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends FocusMenu
 class_name BattleMenu
 
 const ANIMATION_DURATION := 0.4
@@ -15,9 +15,6 @@ onready var action_button: TextureButton = $"%ActionButton"
 onready var run_button: TextureButton = $"%RunButton"
 
 signal menu_option_selected(option)
-
-func grab_action_focus() -> void:
-	action_button.grab_focus()
 
 func show_menu() -> void:
 	show()
