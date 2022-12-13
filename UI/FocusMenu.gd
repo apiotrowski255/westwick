@@ -1,7 +1,7 @@
 extends Control
 class_name FocusMenu
 
-export(Array, NodePath) var focus_nodes : Array = [] # allows us to tell which nodes be focused. 
+export(Array, NodePath) var focus_nodes : Array # allows us to tell which nodes be focused. 
 
 var last_focus_node : Control
 
