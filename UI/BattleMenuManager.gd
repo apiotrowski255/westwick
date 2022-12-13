@@ -4,10 +4,13 @@ var elizabethStats : PlayerClassStats = ReferenceStash.elizabethStats
 
 var uiStack := UIStack.new()
 
+var selected_resource : Resource
+
 onready var battle_menu: HBoxContainer = $"%BattleMenu"
 onready var action_list: PanelContainer = $"%ActionList"
 onready var item_list: PanelContainer = $"%ItemList"
 onready var context_menu: PanelContainer = $"%ContextMenu"
+onready var info_menu: PanelContainer = $"%InfoMenu"
 
 func _ready() -> void:
 	action_list.fill(elizabethStats.battle_actions)
@@ -30,15 +33,17 @@ func _on_BattleMenu_menu_option_selected(option : int) -> void:
 
 func _on_ActionList_resource_selected(resource : BattleAction) -> void:
 	uiStack.push(context_menu)
-	print(resource.name)
+	selected_resource = resource
 
 func _on_ItemList_resource_selected(resource : Item) -> void:
 	uiStack.push(context_menu)
-	print(resource.name)
+	selected_resource = resource
 
 func _on_ContextMenu_option_selected(option : int) -> void:
 	match option:
 		ContextMenu.USE:
 			print("use")
 		ContextMenu.INFO:
-			print("info")
+			if selected_resource is Item or selected_resource is BattleAction:
+				info_menu.text = selected_resource.description
+				uiStack.push(info_menu)
