@@ -37,6 +37,8 @@ func _on_BattleMenu_menu_option_selected(option : int) -> void:
 		BattleMenu.ITEM:
 			uiStack.push(item_list)
 		BattleMenu.RUN:
+			battle_menu.hide_menu()
+			battle_menu.release_focus()
 			emit_signal("battle_menu_resource_selected", RUN_BATTLE_ACTION)
 
 
