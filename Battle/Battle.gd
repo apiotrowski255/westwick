@@ -63,9 +63,20 @@ func _on_ally_turn_started() -> void:
 	var selected_resource : Resource = yield(battle_menu_manager, "battle_menu_resource_selected")
 
 	if selected_resource is DamageBattleAction:
-		battle_camera.focus_target(enemy_camera_position, ZOOM_IN)
-		var battle_action = player_battle_unit.stats.battle_actions.front()
-		player_battle_unit.melee_attack(enemy_battle_unit, battle_action)
+		match selected_resource.type:
+			DamageBattleAction.Type.MELEE:
+				battle_camera.focus_target(enemy_camera_position, ZOOM_IN)
+				player_battle_unit.melee_attack(enemy_battle_unit, selected_resource)
+			DamageBattleAction.Type.RANGED:
+				player_battle_unit.ranged_attack(enemy_battle_unit, selected_resource)
+	elif selected_resource.name == "Defend":
+		asyncTurnPool.append(self)
+		player_battle_unit.defend = true
+		timer.start(1.0)
+		yield(timer, "timeout")
+		asyncTurnPool.remove(self)
+	elif selected_resource is Item:
+		player_battle_unit.use_item(player_battle_unit, selected_resource)
 	elif selected_resource.name == "Run":
 		exit_battle()
 	

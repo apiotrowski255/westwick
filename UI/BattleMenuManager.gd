@@ -19,7 +19,6 @@ signal battle_menu_resource_selected(selected_resource)
 
 func _ready() -> void:
 	action_list.fill(elizabethStats.battle_actions)
-	item_list.fill(elizabethStats.inventory.items)
 
 func show_battle_menu() -> void:
 	yield(battle_menu.show_menu(), "completed")
@@ -53,8 +52,11 @@ func _on_ItemList_resource_selected(resource : Item) -> void:
 func _on_ContextMenu_option_selected(option : int) -> void:
 	match option:
 		ContextMenu.USE:
-			uiStack.clear()
-			battle_menu.show()
+			# uiStack.clear()
+			# battle_menu.show()
+			uiStack.pop()
+			uiStack.pop()
+			battle_menu.release_focus()
 			battle_menu.hide_menu()
 			battle_menu.release_focus()
 			if selected_resource is Item:
