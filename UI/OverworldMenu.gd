@@ -5,11 +5,6 @@ enum {STATS, ITEMS, EXIT}
 
 signal option_selected(option)
 
-func _ready() -> void:
-	get_tree().paused = true
-	grab_focus()
-
-
 func _on_StatsButton_button_down() -> void:
 	emit_signal("option_selected", STATS)
 
